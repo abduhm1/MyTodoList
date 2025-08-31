@@ -1,0 +1,233 @@
+/* style.css */
+:root {
+    --parchment: #f5e9d4;
+    --ink: #3a2c1d;
+    --gold: #c9a145;
+    --coffee-stain: #d7c1a3;
+    --shadow: rgba(0, 0, 0, 0.15);
+}
+
+body {
+    background: linear-gradient(135deg, #8b6d46 0%, #5d4a30 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Georgia', serif;
+    padding: 20px;
+    margin: 0;
+}
+
+.vintage-paper {
+    background-color: var(--parchment);
+    width: 100%;
+    max-width: 600px;
+    border-radius: 2px;
+    box-shadow: 0 10px 30px var(--shadow);
+    position: relative;
+    padding: 50px 40px;
+    overflow: hidden;
+}
+
+.paper-stain {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--coffee-stain) 0%, transparent 70%);
+    opacity: 0.2;
+    top: -50px;
+    right: -50px;
+    z-index: 0;
+}
+
+.paper-stain.reverse {
+    top: auto;
+    right: auto;
+    bottom: -60px;
+    left: -70px;
+    transform: rotate(45deg);
+}
+
+.paper-clip {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 15px;
+    background: linear-gradient(to bottom, #a0a0a0, #6d6d6d);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.todo-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-family: 'Palatino Linotype', serif;
+    text-align: center;
+    color: var(--ink);
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-size: 2.8rem;
+    margin: 0 0 10px 0;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 15px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #7a6a56;
+    font-style: italic;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#todo-entry-box {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #d4c5a8;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    font-size: 1.1rem;
+    color: var(--ink);
+    font-family: 'Georgia', serif;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+#todo-entry-box:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(201, 161, 69, 0.3);
+}
+
+button {
+    background-color: var(--ink);
+    color: var(--parchment);
+    border: none;
+    padding: 15px 25px;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+button:hover::after {
+    left: 100%;
+}
+
+button:hover {
+    background-color: #2a1f13;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#add-button {
+    background-color: var(--gold);
+    color: var(--ink);
+    font-weight: bold;
+}
+
+#todo-list {
+    padding: 0;
+    margin: 0 0 30px 0;
+    list-style: none;
+    counter-reset: todo-counter;
+}
+
+#todo-list li {
+    counter-increment: todo-counter;
+    padding: 15px 15px 15px 50px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border-left: 3px solid var(--gold);
+    position: relative;
+    font-size: 1.1rem;
+    color: var(--ink);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#todo-list li::before {
+    content: counter(todo-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    background: var(--gold);
+    color: var(--ink);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#todo-list li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#todo-list li.completed {
+    color: #9e8f7a;
+    text-decoration: line-through;
+    background: rgba(215, 193, 163, 0.3);
+}
+
+#todo-list li.completed::before {
+    content: "✓";
+    background: #8a9a5b;
+    color: white;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .vintage-paper {
+        padding: 30px 20px;
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+}
