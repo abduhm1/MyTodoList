@@ -220,13 +220,34 @@ button:hover {
 
 @media (max-width: 600px) {
     .vintage-paper {
-        padding: 30px 20px;
+        padding: 25px 15px;
     }
     
     .controls {
         flex-direction: column;
     }
     
+    h1 {
+        font-size: 30px;
+        margin-top: 13px;
+    }
+
+    body {
+        font-size: 13px;
+    }
+
+    #add-button {
+        font-size: 0px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    #add-button::before {
+        content: '+';
+        font-size: 25px; /* Set the icon size back to normal */
+        color: #fff; /* Make sure the icon is visible */
+  }
+
     button {
         width: 100%;
     }
